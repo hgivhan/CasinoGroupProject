@@ -1,6 +1,5 @@
 package io.zipcoder.casino.utilities;
 
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -58,4 +57,3 @@ public final class Console {
         return getLongInput(prompt, args).intValue();
     }
 }
-
