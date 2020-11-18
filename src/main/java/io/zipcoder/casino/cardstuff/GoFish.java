@@ -31,17 +31,16 @@ public class GoFish {
 
         System.out.println("Welcome to Go Fish. ");
 
-        checkPairs(aiHand);
-        checkPairs(playerHand);
-
         while(playerPairs + aiPairs <= 26){
 
             turnPlayer();
+            System.out.println("----------");
+            playerPairs += checkPairs(playerHand);
 
             turnAi();
-
+            System.out.println("----------");
+            aiPairs += checkPairs(aiHand);
         }
-
 
         winningMessage();
     }
@@ -62,6 +61,8 @@ public class GoFish {
     public void turnPlayer(){
         Boolean playing = true;
         do{
+            playerPairs += checkPairs(playerHand);
+
             System.out.println("You have " + getPlayerPairs() + " pairs.");
 
             if(playerHand.getNumCards() == 0){
@@ -72,7 +73,7 @@ public class GoFish {
             }
             System.out.println("Your hand is: ");
             for(int i = 0; i < playerHand.getNumCards(); i++){
-                System.out.print(playerHand.getCard(i) + " ");
+                System.out.print(playerHand.getCard(i) + ", ");
             }
 
             System.out.println("\nWhich card would you like to ask for?");
@@ -91,7 +92,7 @@ public class GoFish {
                 continue;
             }
 
-            System.out.println("You as for a " + input.getValue());
+            System.out.println("You ask for a " + input.getValue());
             if(checkCards(aiHand, playerHand, input)){
                 playerPairs++;
                 playing = true;
@@ -108,6 +109,8 @@ public class GoFish {
     public void turnAi(){
         Boolean playing = true;
         do{
+            aiPairs += checkPairs(aiHand);
+
             System.out.println("Your opponent has " + getAiPairs() + " pairs.");
 
             if(aiHand.getNumCards() == 0){
@@ -148,7 +151,7 @@ public class GoFish {
     public Integer checkPairs(Deck deckT){
         int numOfPairs = 0;
         for(int i = 0; i < deckT.getNumCards() - 1; i++){
-                for(int x = i + 1; x < deckT.getNumCards(); x++){
+                for(int x = i + 1; x < deckT.getNumCards() - 1; x++){
                     if(deckT.getCard(i).getValue() == deckT.getCard(x).getValue()){
                         deckT.removeCard(i);
                         deckT.removeCard(x);
@@ -165,6 +168,7 @@ public class GoFish {
                 for(int x = 0; x < checker.getNumCards(); x++){
                     if(checker.getCard(x).getValue() == input.getValue()){
                         checker.removeCard(x);
+                        checking.removeCard(i);
                         return true;
                     }
                 }
