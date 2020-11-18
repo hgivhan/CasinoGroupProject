@@ -2,37 +2,38 @@ package io.zipcoder.casino.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import java.util.ArrayList;
 
 import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
 public class DiceGameTest {
-    DiceGame diceTossCrap;
-    DiceGame diceTossYahtzee;
-    HashMap<Integer, Integer> diceMap;
-    Integer diceNum1 = 2;
-    Integer diceNum2 = 5;
+    DiceGame diceToss;
+    Integer diceNum = 2;
 
     @Before
     public void setup(){
-    diceTossCrap = new DiceGame(diceNum1);
-    diceTossYahtzee = new DiceGame(diceNum2);
-    diceMap = new HashMap<Integer, Integer>();
+    diceToss = new DiceGame(diceNum);
+    //diceTossYahtzee = new DiceGame(diceNum2);
+    //diceMap = new HashMap<Integer, Integer>();
     }
 
     @Test
-    public void tossAndSum() {
-        Integer expectedMax = diceNum1;
-        Integer expectedMin = diceNum1*6;
+    public void tossAndList() {
+        //given
+        Integer expectedMax = 6;
+        Integer expectedMin = 1;
         //when
-        Integer toss = diceTossCrap.tossAndSum();
+        ArrayList<Integer> tossList = diceToss.tossAndList();
         //then
-        assertTrue(toss <= expectedMax);
-        assertTrue(toss >= expectedMin);
+        for (Integer x: tossList) {
+            assertTrue(x <= 6);
+            assertTrue(x >= 1);
+        }
     }
 
-    @Test //making sure the values are 1 to 6
+/*    @Test //making sure the values are 1 to 6
     public void tossAndList1(){
         Integer expectedMin = 1;
         Integer expectedMax = 6;
@@ -56,7 +57,7 @@ public class DiceGameTest {
     public void saveDice(){
         diceMap = diceTossYahtzee.tossAndList();
 
-    }
+    }*/
 
 
 }
