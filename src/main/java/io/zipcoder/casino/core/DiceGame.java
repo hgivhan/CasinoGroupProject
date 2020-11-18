@@ -4,12 +4,16 @@ import java.util.HashMap;
 
 public class DiceGame {
     private Integer diceNum;
+    private HashMap<Integer, Integer> diceRollMap;
+    private HashMap<Integer, Integer> diceSavedMap;
 
     public DiceGame(){
     }
 
     public DiceGame(Integer diceNum){
         this.diceNum = diceNum;
+        diceRollMap = new HashMap<Integer, Integer>();
+        diceSavedMap = new HashMap<Integer, Integer>();
     }
 
     public Integer tossAndSum() {
@@ -20,10 +24,6 @@ public class DiceGame {
         return tossSum;
     }
 
-    //toss and creates a hashmap of <diceNum> # of dices
-    public HashMap<Integer, Integer> tossAndList(){
-        return null;
-    }
     public Integer getDiceNum(){
         return diceNum;
     }
@@ -32,11 +32,30 @@ public class DiceGame {
         this.diceNum = diceNum;
     }
 
-    //returns a new hashmap of the saved dices based on user input (dicedToSave), should also reset the diceNum
-    public HashMap<Integer, Integer> saveDice(Integer[] diceToSaved){
-        Integer[] userInput = {1,3}; //user selects dice #1 and #3 (not the value) to remove
+    //toss and creates a hashmap of <diceNum> # of dices
+    public HashMap<Integer, Integer> tossAndList(){
+        for (int i = 1; i <= diceNum; i++) {
+            diceRollMap.put(i, 1+(int)(Math.random()*6));
+        }
+        return diceRollMap;
+    }
 
-    return null;
+    //returns a new hashmap of the saved dices based on user input (dicedToSave), should also reset the diceNum
+    public HashMap<Integer, Integer> saveDice(Integer[] diceToSaved) {
+        for (int i = 0; i < diceToSaved.length; i++) {
+            diceSavedMap.put(diceToSaved[i], diceRollMap.get(diceToSaved[i]));
+            diceRollMap.remove(diceToSaved[i]);
+        }
+        return diceSavedMap;
+    }
+
+    public HashMap<Integer,Integer> returnDice(Integer[] diceToReturn){
+        Integer[] userInput = {1, 3};
+        for (int i = 0; i < diceToReturn.length; i++) {
+            diceRollMap.put(userInput[i], diceSavedMap.get(userInput[i]));
+            diceSavedMap.remove(userInput[i]);
+        }
+        return diceRollMap;
     }
 
 
