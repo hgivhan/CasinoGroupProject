@@ -5,10 +5,9 @@ import io.zipcoder.casino.utilities.Console;
 public class MenuYahtzee {
 
     public MenuYahtzee(){
-        Console console = new Console();
     }
 
-    public String displayScoreCard(){
+/*    public String displayScoreCard(){
         return null;
     }
 
@@ -38,5 +37,5 @@ public class MenuYahtzee {
     public String promptSaveScore(){
         String askSaveScore = "Which score would you like to save";
         return askSaveScore;
-    }
+    }*/
 }

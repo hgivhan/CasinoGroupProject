@@ -6,24 +6,24 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class EngineYahtzee{
-    private DiceYahtzee dice;
+   /* private DiceYahtzee dice;
     private MenuYahtzee menu;
     private ScoreCardYahtzee score;
     private Integer rollCount;
     private Integer turnCount;
     private Integer[] diceCount;
-    private HashMap<Integer, Integer> totalDice;
+    private HashMap<Integer, Integer> totalDice;*/
 
     public EngineYahtzee(){
 
-         dice = new DiceYahtzee();
+         /*dice = new DiceYahtzee();
          menu = new MenuYahtzee();
          score = new ScoreCardYahtzee();
          totalDice = new HashMap<Integer, Integer>();
-         turnCount = 0;
+         turnCount = 0;*/
     }
 
-    public void Start(){
+    /*public void Start(){
         while (turnCount<14){
             //print scorecard
             //get input from user
@@ -85,6 +85,6 @@ public class EngineYahtzee{
     public boolean checkYahtzee(){
 
     }
-
+*/
 
 }

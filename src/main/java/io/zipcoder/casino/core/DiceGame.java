@@ -1,27 +1,29 @@
 package io.zipcoder.casino.core;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class DiceGame {
     private Integer diceNum;
-    private HashMap<Integer, Integer> diceRollMap;
-    private HashMap<Integer, Integer> diceSavedMap;
+
+   /* private HashMap<Integer, Integer> diceRollMap;
+    private HashMap<Integer, Integer> diceSavedMap;*/
 
     public DiceGame(){
     }
 
     public DiceGame(Integer diceNum){
         this.diceNum = diceNum;
-        diceRollMap = new HashMap<Integer, Integer>();
-        diceSavedMap = new HashMap<Integer, Integer>();
+ /*       diceRollMap = new HashMap<Integer, Integer>();
+        diceSavedMap = new HashMap<Integer, Integer>();*/
     }
 
-    public Integer tossAndSum() {
-        Integer tossSum = 0;
+    public ArrayList<Integer> tossAndList() {
+        ArrayList<Integer> tossList = new ArrayList<Integer>();
         for (int i = 1; i <= diceNum; i++) {
-            tossSum += 1+(int)(Math.random()*6);
+            tossList.add(1+(int)(Math.random()*6));
         }
-        return tossSum;
+        return tossList;
     }
 
     public Integer getDiceNum(){
@@ -32,7 +34,7 @@ public class DiceGame {
         this.diceNum = diceNum;
     }
 
-    //toss and creates a hashmap of <diceNum> # of dices
+  /*  //toss and creates a hashmap of <diceNum> # of dices
     public HashMap<Integer, Integer> tossAndList(){
         for (int i = 1; i <= diceNum; i++) {
             diceRollMap.put(i, 1+(int)(Math.random()*6));
@@ -56,10 +58,6 @@ public class DiceGame {
             diceSavedMap.remove(userInput[i]);
         }
         return diceRollMap;
-    }
-
-
-
-
+    }*/
 
 }
