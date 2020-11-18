@@ -1,19 +1,13 @@
 package io.zipcoder.casino.yahtzee;
+import io.zipcoder.casino.core.DiceGame;
 
-import org.junit.Before;
-import org.junit.Test;
+import java.util.HashMap;
 
-
-public class EngineYahtzee {
-    //add instance variables here
-
-    @Before
-    public void setup(){
-    //Dice die = new Dice();
+public class EngineYahtzee{
+    public EngineYahtzee(){
+        DiceYahtzee dice = new DiceYahtzee();
+        MenuYahtzee menu = new MenuYahtzee();
+        ScoreCardYahtzee score = new ScoreCardYahtzee();
     }
-
-    @Test
-    public void
-
 
 }
