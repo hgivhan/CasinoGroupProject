@@ -19,6 +19,8 @@ public class Craps extends DiceGame /*implements GamblingGame*/{
     }
 
 
+    //Check player balance. Player must have atleast 1 chip to buy in
+
     //While(true) {
     public Integer wager() {
         //switch for pass and dontpass
@@ -60,4 +62,7 @@ public class Craps extends DiceGame /*implements GamblingGame*/{
         //person presses enter or enters anything other than "n" the game will replay.
     }
     //}
+
+
+
 }
