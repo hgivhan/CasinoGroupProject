@@ -1,4 +1,4 @@
-package io.zipcoder.casino.Craps;
+package io.zipcoder.casino.craps;
 
 import io.zipcoder.casino.utilities.Console;
 
