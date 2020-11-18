@@ -12,6 +12,7 @@ public final class Console {
     private final Scanner input;
     private final PrintStream output;
 
+
     public Console(InputStream in, PrintStream out) {
         this.input = new Scanner(in);
         this.output = out;
