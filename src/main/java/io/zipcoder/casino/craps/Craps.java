@@ -1,17 +1,23 @@
 package io.zipcoder.casino.craps;
 import io.zipcoder.casino.core.DiceGame;
+import io.zipcoder.casino.core.GamblingGame;
 //import io.zipcoder.casino.interfaces.GamblingGame;
 
 import java.util.ArrayList;
 
-public class Craps extends DiceGame /*implements GamblingGame*/{
-
+public class Craps extends DiceGame implements GamblingGame {
     DiceGame diceGame;
     private Integer numOfDie = 2;
     private Integer dieVal;
     private Integer dieVal2;
     ArrayList<Integer> dieRolls;
     private Integer wagerAmt;
+
+    public void Craps(Integer dieVal, Integer dieVal2) {
+        this.dieVal = dieVal;
+        this.dieVal2 = dieVal2;
+    }
+
 
     public Integer crapsRoll() {
 
@@ -63,6 +69,10 @@ public class Craps extends DiceGame /*implements GamblingGame*/{
     }
     //}
 
+
+    public void passBet1() {
+
+    }
 
 
 }

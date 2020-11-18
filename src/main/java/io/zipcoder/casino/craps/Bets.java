@@ -1,12 +1,22 @@
 package io.zipcoder.casino.craps;
 
+import io.zipcoder.casino.core.GamblingGame;
 import io.zipcoder.casino.utilities.Console;
 
-public class Bets {
+public class Bets implements GamblingGame {
     Console console;
+    Craps craps;
+    GamblingGame gamblingGame;
+    CrapsEngine crapsEngine;
+    private Integer betAmt;
 
 
-    public Integer passBetDie() {
+
+    public Integer passBet() {
+        if(craps.dieVal == 7 || dieVal == 11) {
+
+
+        }
         return null;
     }
 
@@ -14,13 +24,17 @@ public class Bets {
         return null;
     }
 
-    public Integer wager() {
-        Integer wagerAmt = 0;
-        console.getIntegerInput("How much would you like to bet?", wagerAmt);
-        return wagerAmt;
+
+    public void setBetAmt(Integer betAmt) {
+        this.betAmt = betAmt;
     }
 
 
+    public double getPlayerBet(double playerBet) {
+        return ;
+    }
 
-
+    public Integer getBetAmt() {
+        return betAmt;
+    }
 }
