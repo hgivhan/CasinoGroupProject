@@ -27,6 +27,10 @@ public class Menu {
         console.println("Welcome to C2's Casino");
     }
 
+    /**
+     * method for walking user through creating a new Player object for themselves
+     * @return returns a new player object
+     */
     public Player createPlayer() {
         Integer testInput = console.getIntegerInput("Are you gambling today? (1)yes (2)no");
         //console.println(String.valueOf(testInput));
@@ -40,6 +44,9 @@ public class Menu {
                 Player gamblingPlayer = new Player(startingWallet, gamblingPlayerName);
                 return gamblingPlayer;
             case 2:
+                /**
+                 * If they want to create a non-gambling player
+                 */
                 String nonGamblingPlayerName = console.getStringInput("What is your name?");
                 Player nonGamblingPlayer = new Player(nonGamblingPlayerName);
                 return nonGamblingPlayer;
@@ -49,15 +56,40 @@ public class Menu {
         }
     }
 
+    /**
+     * Method displaying menu from which user can choose what game they want to play
+     * After user has chosen that game is executed
+     */
     public void selectGame() {
+        //calls the createPlayer() method internally to create a player that can be passed to various games
         Player newPlayer = createPlayer();
-        Integer gameMenu = console.getIntegerInput("Which game would you like to play?\n" +
-                "1: BlackJack\n2: Craps\n3: Go Fish\n4: Cee-Lo");
-        switch (gameMenu) {
-            case 1:
-                blackjack = new Blackjack(newPlayer, console);
-                blackjack.playBlackJack();
-                console.println("After playing you now have $" + blackjack.displayPlayerWallet());
+        //boolean to determine whether or not user wants to continue playing
+        boolean isPlaying = true;
+        while(isPlaying) {
+            Integer gameMenu = console.getIntegerInput("Which game would you like to play?\n" +
+                    "1: BlackJack\n2: Craps\n3: Go Fish\n4: Cee-Lo\n5: Quit playing");
+            switch (gameMenu) {
+                case 1:
+                    blackjack = new Blackjack(newPlayer, console);
+                    blackjack.playBlackJack();
+                    console.println("After playing you now have $" + blackjack.displayPlayerWallet());
+                    break;
+                case 2:
+                    //play craps
+                    break;
+                case 3:
+                    //play Go Fish
+                    break;
+                case 4:
+                    //play Cee-Lo
+                default:
+                    String quitConfirm = console.getStringInput("Are you sure you want to quit? y/n");
+                    quitConfirm.toLowerCase();
+                    if(quitConfirm.equals("y")) {
+                        isPlaying = false;
+                    }
+                    break;
+            }
         }
     }
 
