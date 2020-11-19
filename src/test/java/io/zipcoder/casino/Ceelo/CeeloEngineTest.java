@@ -13,35 +13,35 @@ public class CeeloEngineTest {
     public void tearDown() throws Exception {
     }
 
-    @Test
-    public void userPressOne() {
-    }
-
-    @Test
-    public void promptRoll() {
-    }
-
-    @Test
-    public void playerToss() {
-    }
-
-    @Test
-    public void computerToss() {
-    }
-
-    @Test
-    public void compareToss() {
-    }
-
-    @Test
-    public void comparePoints() {
-    }
-
-    @Test
-    public void compareTriples() {
-    }
-
-    @Test
-    public void delay() {
-    }
+//    @Test
+//    public void userPressOne() {
+//    }
+//
+//    @Test
+//    public void promptRoll() {
+//    }
+//
+//    @Test
+//    public void playerToss() {
+//    }
+//
+//    @Test
+//    public void computerToss() {
+//    }
+//
+//    @Test
+//    public void compareToss() {
+//    }
+//
+//    @Test
+//    public void comparePoints() {
+//    }
+//
+//    @Test
+//    public void compareTriples() {
+//    }
+//
+//    @Test
+//    public void delay() {
+//    }
 }

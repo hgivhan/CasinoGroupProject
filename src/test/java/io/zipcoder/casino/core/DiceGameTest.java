@@ -1,5 +1,6 @@
 package io.zipcoder.casino.core;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
@@ -13,53 +14,45 @@ public class DiceGameTest {
     Integer diceNum = 2;
 
     @Before
-    public void setup(){
-    diceToss = new DiceGame(diceNum);
-    //diceTossYahtzee = new DiceGame(diceNum2);
-    //diceMap = new HashMap<Integer, Integer>();
+    public void setup() {
+        diceToss = new DiceGame(diceNum);
+        //diceTossYahtzee = new DiceGame(diceNum2);
+        //diceMap = new HashMap<Integer, Integer>();
     }
+
 
     @Test
-    public void tossAndList() {
-        /*Integer expectedMax = 6;
-        Integer expectedMin = 1;
-        //when
-        ArrayList<Integer> tossList = diceToss.tossAndList();
+    public void constructorTest() {
+        Integer givenDiceNum = 6;
+        DiceGame newGame = new DiceGame(givenDiceNum);
 
-        for (Integer x: tossList) {
-            assertTrue(x <= 6);
-            assertTrue(x >= 1);
-        }
-        //then*/
+        Integer actualDiceNum = newGame.getDiceNum();
 
+        Assert.assertEquals(givenDiceNum, actualDiceNum);
     }
 
-/*    @Test //making sure the values are 1 to 6
-    public void tossAndList1(){
-        Integer expectedMin = 1;
-        Integer expectedMax = 6;
-
-        diceMap = diceTossYahtzee.tossAndList();
-        for(Integer x: diceMap.values()){
-            assertTrue(x>=expectedMin && x<=expectedMax);
-        }
-    }
-
-    @Test //making sure the keys are 1 to 5
-    public void tossAndList2() {
-        diceMap = diceTossYahtzee.tossAndList();
-        for (int i = 1; i <= 5; i++) {
-            assertTrue(diceMap.containsKey(i));
-        }
-        assertTrue(diceMap.size()==5);
-    }
 
     @Test
-    public void saveDice(){
-        diceMap = diceTossYahtzee.tossAndList();
+    public void tossAndListTest() {
+    }
 
-    }*/
+//    public ArrayList<Integer> tossAndList(Integer diceNum){
+//        ArrayList<Integer> tossList = new ArrayList<Integer>();
+//        for (int i = 1; i <= diceNum; i++) {
+//            tossList.add(1+(int)(Math.random()*6));
+//        }
+//        return tossList;
+//    }
 
+    @Test
+    public void setDiceNumTest() {
+        DiceGame newGame = new DiceGame();
+        Integer expectedDiceNum = 3;
 
+        newGame.setDiceNum(expectedDiceNum);
+
+        Integer actualDiceNum = newGame.getDiceNum();
+
+        Assert.assertEquals(expectedDiceNum, actualDiceNum);
+    }
 }
-
