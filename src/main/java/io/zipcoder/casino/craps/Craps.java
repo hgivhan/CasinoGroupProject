@@ -32,6 +32,7 @@ public class Craps extends DiceGame implements GamblingGame {
         //switch for pass and dontpass
         //current balance
         //prompt player for wager amount and store it within
+
     }
 
     public void rollDice() {

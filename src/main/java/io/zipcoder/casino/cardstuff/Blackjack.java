@@ -51,7 +51,6 @@ public class Blackjack implements GamblingGame {
             endRound = false;
 
             //take in the player's starting bet
-            console.println("You currently have " + playerMoney + " how much would you like to bet?");
             playerBet = getPlayerBet();
 
             //check to make sure player isn't betting more money than they have
@@ -75,8 +74,7 @@ public class Blackjack implements GamblingGame {
             }
 
             //send player and dealer cards to discard pile
-            playerHand.clearHand(discardPile);
-            dealerHand.clearHand(discardPile);
+            clearHands();
 
             //if deck size is less than (number of decks in the chute * 10) cards at the end of a round,
             // shuffle discard pile back into playing deck
@@ -94,6 +92,11 @@ public class Blackjack implements GamblingGame {
                 }
             }
         }
+    }
+
+    public void clearHands() {
+        playerHand.clearHand(discardPile);
+        dealerHand.clearHand(discardPile);
     }
 
     public void dealCards() {
@@ -198,6 +201,7 @@ public class Blackjack implements GamblingGame {
     }
 
     public double getPlayerBet() {
+        console.println("You currently have " + playerMoney);
         double playerBet = console.getDoubleInput("How much would you like to bet on this hand?");
         return playerBet;
     }
