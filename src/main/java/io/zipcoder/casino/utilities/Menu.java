@@ -1,6 +1,7 @@
 package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.cardstuff.Blackjack;
+import io.zipcoder.casino.ceelo.CeeloEngine;
 import io.zipcoder.casino.core.Player;
 
 import java.io.InputStream;
@@ -11,6 +12,7 @@ public class Menu {
 
     Console console;
     Blackjack blackjack;
+    CeeloEngine ceelo;
 
     public Menu(Console console) {
         this.console = console;
@@ -81,7 +83,8 @@ public class Menu {
                     //play Go Fish
                     break;
                 case 4:
-                    //play Cee-Lo
+                    ceelo = new CeeloEngine();
+                    ceelo.userPressOne();
                 default:
                     String quitConfirm = console.getStringInput("Are you sure you want to quit? y/n");
                     quitConfirm.toLowerCase();
