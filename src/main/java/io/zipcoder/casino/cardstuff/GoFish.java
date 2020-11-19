@@ -14,7 +14,6 @@ public class GoFish {
     private Deck playerHand = new Deck();
     private Deck aiHand = new Deck();
     private Card card;
-    public Scanner scanner = new Scanner(System.in);
 //    Console console = new Console(System.in, System.out);
     private ArrayList<Card> aiGuesses = new ArrayList<Card>();
     private Integer ageOfGuesses = 0;
@@ -24,25 +23,25 @@ public class GoFish {
 
     }
 
-    public void run(){
+    public String run(){
         createDeck();
         dealCards();
 
 
         System.out.println("Welcome to Go Fish. ");
 
-        while(playerPairs + aiPairs <= 26){
+        while(playerPairs + aiPairs < 26){
 
             turnPlayer();
-            System.out.println("----------");
+            System.out.println("\n----------");
             playerPairs += checkPairs(playerHand);
 
             turnAi();
-            System.out.println("----------");
+            System.out.println("\n----------");
             aiPairs += checkPairs(aiHand);
         }
 
-        winningMessage();
+        return winningMessage();
     }
 
     public void createDeck() {
@@ -50,7 +49,19 @@ public class GoFish {
         deck.shuffleDeck();
     }
 
-    public void dealCards(){
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public Deck getAiHand() {//for testing purposes
+        return aiHand;
+    }
+
+    public Deck getPlayerHand() {//for testing purposes
+        return playerHand;
+    }
+
+    public void dealCards(){//Deals 5 cards to each hand
         for(int i = 0; i < 5; i++){
             playerHand.drawCard(deck);
             aiHand.drawCard(deck);
@@ -59,11 +70,12 @@ public class GoFish {
     }
 
     public void turnPlayer(){
+        Scanner scanner = new Scanner(System.in);//I think I need scanner for test purposes
         Boolean playing = true;
         do{
-            playerPairs += checkPairs(playerHand);
+            playerPairs += checkPairs(playerHand); //Checks if there are any pairs
 
-            System.out.println("You have " + getPlayerPairs() + " pairs.");
+            System.out.println("You have " + getPlayerPairs() + " pairs."); //Prints num of pairs
 
             if(playerHand.getNumCards() == 0){
                 System.out.println("Looks like your hand is empty, draw five cards.");
@@ -100,13 +112,16 @@ public class GoFish {
                 playing = false;
                 aiGuesses.add(input);
             }
+            if(deck.getNumCards() == 0 && playerHand.getNumCards() == 0){//Had to disrupt the loop for the test, should not affect gameplay
+                playing = false;
+            }
 
         } while(playing);
         System.out.println("Go fish!");
         fish(playerHand);
     }
 
-    public void turnAi(){
+    public void turnAi(){//Similar to player turn but doesnt need input validation
         Boolean playing = true;
         do{
             aiPairs += checkPairs(aiHand);
@@ -130,12 +145,15 @@ public class GoFish {
                 playing = false;
             }
             ageOfGuesses++;
+            if(deck.getNumCards() == 0 && playerHand.getNumCards() == 0){//Had to disrupt the loop for the test, should not affect gameplay
+                playing = false;
+            }
         } while(playing);
         System.out.println("Go fish!");
         fish(aiHand);
     }
 
-    public Card aiThoughts(){
+    public Card aiThoughts(){//AI thoughts gives the Ai the capabilities to not be "Stupid", remembers what player asked for and checks its hand accordingly
         if(ageOfGuesses > 2){
             aiGuesses.remove(aiGuesses.size()- 1);
             this.ageOfGuesses = 0;
@@ -148,13 +166,13 @@ public class GoFish {
         return aiHand.getCard(random.nextInt(aiHand.getNumCards()));
     }
 
-    public Integer checkPairs(Deck deckT){
+    public Integer checkPairs(Deck deckT){//checks for pairs and counts how many
         int numOfPairs = 0;
         for(int i = 0; i < deckT.getNumCards() - 1; i++){
-                for(int x = i + 1; x < deckT.getNumCards() - 1; x++){
+                for(int x = i + 1; x < deckT.getNumCards(); x++){
                     if(deckT.getCard(i).getValue() == deckT.getCard(x).getValue()){
-                        deckT.removeCard(i);
                         deckT.removeCard(x);
+                        deckT.removeCard(i);
                         numOfPairs++;
                     }
                 }
@@ -162,7 +180,7 @@ public class GoFish {
         return numOfPairs;
     }
 
-    public Boolean checkCards(Deck checking, Deck checker, Card input){
+    public Boolean checkCards(Deck checking, Deck checker, Card input){//checks if the card is in the opponents hand and removes it
         for(int i = 0; i < checking.getNumCards(); i++){
             if(checking.getCard(i).getValue() == input.getValue()){
                 for(int x = 0; x < checker.getNumCards(); x++){
@@ -177,7 +195,7 @@ public class GoFish {
         return false;
     }
 
-    public Boolean checkCardAskedFor(Deck check, Card input){
+    public Boolean checkCardAskedFor(Deck check, Card input){//Checks if the card is actually in the players hand
         for(int i = 0; i < check.getNumCards(); i++){
             if(check.getCard(i).getValue() == input.getValue()){
                 return true;
@@ -186,12 +204,24 @@ public class GoFish {
         return false;
     }
 
+    public void addCard(Deck deck, Card card){//Purely for test purposes
+        deck.addCard(card);
+    }
+
     public Integer getAiPairs() {
         return aiPairs;
     }
 
     public Integer getPlayerPairs() {
         return playerPairs;
+    }
+
+    public void setAiPairs(Integer aiPairs) {
+        this.aiPairs = aiPairs;
+    }
+
+    public void setPlayerPairs(Integer playerPairs) {
+        this.playerPairs = playerPairs;
     }
 
     public void fish(Deck temp){
@@ -207,9 +237,14 @@ public class GoFish {
         if(aiPairs < playerPairs){
             winner = "Player";
             System.out.println("Congrats, you beat the AI!");
+        } else if(aiPairs.equals(playerPairs)){
+            winner = "Nobody";
+
+        } else {
+            winner = "AI";
+            System.out.println("Wow you couldn't beat the AI....");
         }
-        winner = "AI";
-        System.out.println("Wow you couldn't beat the AI....");
+
         return winner;
     }
 
