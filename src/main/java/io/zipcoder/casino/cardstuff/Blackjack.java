@@ -99,7 +99,7 @@ public class Blackjack implements GamblingGame {
         dealerHand.clearHand(discardPile);
     }
 
-    public void dealCards() {
+    public boolean dealCards() {
         //player is dealt two cards
         playerHand.drawCard(playingDeck);
         playerHand.drawCard(playingDeck);
@@ -107,6 +107,8 @@ public class Blackjack implements GamblingGame {
         //dealer is dealt two cards
         dealerHand.drawCard(playingDeck);
         dealerHand.drawCard(playingDeck);
+
+        return true;
     }
 
     public void hitOrStand() {
@@ -141,7 +143,7 @@ public class Blackjack implements GamblingGame {
         }
     }
 
-    public void dealersTurn() {
+    public String dealersTurn() {
         //reveal dealer cards
         console.println("Dealer's cards: ");
         console.println(dealerHand.toString());
@@ -151,6 +153,7 @@ public class Blackjack implements GamblingGame {
             console.println("Dealer wins");
             playerLoses();
             endRound = true;
+            return "Dealer wins";
         }
 
         //dealer draws at 16 and stands at 17
@@ -167,21 +170,25 @@ public class Blackjack implements GamblingGame {
             console.println("Dealer busts. Congratulations, you win!");
             endRound = true;
             playerWins();
+            return "Dealer busts. Congratulations, you win!";
         }
+        return "not enough data -- must be a test!";
     }
 
-    public void determineWinner() {
+    public String determineWinner() {
         //determine who won
         if(dealerHand.handValue() > playerHand.handValue() && endRound == false) {
             console.println("Dealer wins");
             playerLoses();
             endRound = true;
+            return "Dealer wins";
         }
 
         //determine if push
         if(playerHand.handValue() == dealerHand.handValue() && endRound == false) {
             console.println("Push. Nobody wins");
             endRound = true;
+            return "Push. Nobody wins";
         }
 
         //determine if player won
@@ -189,15 +196,19 @@ public class Blackjack implements GamblingGame {
             console.println("Congratulations, you win!");
             playerWins();
             endRound = true;
+            return "Congratulations, you win!";
         }
+        return "not enough data -- must be a test run!";
     }
 
-    public void playerLoses() {
+    public boolean playerLoses() {
         player.setPlayerMoney(playerMoney -= playerBet);
+        return true;
     }
 
-    public void playerWins() {
+    public boolean playerWins() {
         player.setPlayerMoney(playerMoney += playerBet);
+        return true;
     }
 
     public double getPlayerBet() {

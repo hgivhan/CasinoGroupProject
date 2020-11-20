@@ -18,7 +18,7 @@ public class CeeloGame extends DiceGame {
     public boolean checkAutoWin(ArrayList<Integer> diceTossed){
         Integer[] autoWinArr = {4,5,6};
         ArrayList<Integer> autoWinList = new ArrayList<Integer>(Arrays.asList(autoWinArr));
-        if(diceTossed.contains(autoWinList)){
+        if(diceTossed.contains(4) && diceTossed.contains(5) && diceTossed.contains(6)){
             return true;
         }
         else{
@@ -27,9 +27,9 @@ public class CeeloGame extends DiceGame {
     }
 
     public boolean checkAutoLose(ArrayList<Integer> diceTossed){
-        Integer[] autoWinArr = {1,2,3};
-        ArrayList<Integer> autoWinList = new ArrayList<Integer>(Arrays.asList(autoWinArr));
-        if(diceTossed.contains(autoWinList)){
+        Integer[] autoLoseArr = {1,2,3};
+        ArrayList<Integer> autoLoseList = new ArrayList<Integer>(Arrays.asList(autoLoseArr));
+        if(diceTossed.contains(1) && diceTossed.contains(2) && diceTossed.contains(3)){
             return true;
         }
         else{
