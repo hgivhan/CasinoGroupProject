@@ -1,4 +1,4 @@
 package io.zipcoder.casino.yahtzee;
 
-public class MemoryYahtzeeTest {
+public class ScoreCardYahtzeeTest {
 }
