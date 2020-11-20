@@ -1,12 +1,17 @@
 package io.zipcoder.casino;
 
+import io.zipcoder.casino.utilities.Console;
+import io.zipcoder.casino.utilities.Menu;
 
-import io.zipcoder.casino.cardstuff.GoFish;
 
 public class Casino {
+
     public static void main(String[] args) {
+
+        Console console = new Console(System.in, System.out);
+        Menu menu = new Menu(console);
+        menu.mainMenuLoop();
         // write your tests before you start
-        GoFish goFish = new GoFish();
-        goFish.run();
+        
     }
 }

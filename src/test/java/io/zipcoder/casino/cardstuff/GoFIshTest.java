@@ -1,4 +1,4 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.cardstuff;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.zipcoder.casino.cardstuff.*;
