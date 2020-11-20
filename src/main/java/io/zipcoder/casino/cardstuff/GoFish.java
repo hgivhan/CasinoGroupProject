@@ -1,6 +1,8 @@
 package io.zipcoder.casino.cardstuff;
 
 
+import io.zipcoder.casino.utilities.Console;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -14,7 +16,7 @@ public class GoFish {
     private Deck playerHand = new Deck();
     private Deck aiHand = new Deck();
     private Card card;
-//    Console console = new Console(System.in, System.out);
+    Console console = new Console(System.in, System.out);
     private ArrayList<Card> aiGuesses = new ArrayList<Card>();
     private Integer ageOfGuesses = 0;
 
@@ -28,16 +30,16 @@ public class GoFish {
         dealCards();
 
 
-        System.out.println("Welcome to Go Fish. ");
+        console.println("Welcome to Go Fish. ");
 
         while(playerPairs + aiPairs < 26){
 
             turnPlayer();
-            System.out.println("\n----------");
+            console.println("\n----------");
             playerPairs += checkPairs(playerHand);
 
             turnAi();
-            System.out.println("\n----------");
+            console.println("\n----------");
             aiPairs += checkPairs(aiHand);
         }
 
@@ -75,36 +77,36 @@ public class GoFish {
         do{
             playerPairs += checkPairs(playerHand); //Checks if there are any pairs
 
-            System.out.println("You have " + getPlayerPairs() + " pairs."); //Prints num of pairs
+            console.println("You have " + getPlayerPairs() + " pairs."); //Prints num of pairs
 
             if(playerHand.getNumCards() == 0){
-                System.out.println("Looks like your hand is empty, draw five cards.");
+                console.println("Looks like your hand is empty, draw five cards.");
                 for(int x = 0; x < 5; x++){
                     fish(playerHand);
                 }
             }
             System.out.println("Your hand is: ");
             for(int i = 0; i < playerHand.getNumCards(); i++){
-                System.out.print(playerHand.getCard(i) + ", ");
+                console.print(playerHand.getCard(i) + ", ");
             }
 
-            System.out.println("\nWhich card would you like to ask for?");
+            console.println("\nWhich card would you like to ask for?");
 
             Card input;
             try{
                 input = new Card(Suit.CLUB, Value.valueOf(scanner.next().toUpperCase()));
             }
             catch(IllegalArgumentException e){
-                System.out.println("Card not valid or present, please try another. Try again: ");
+                console.println("Card not valid or present, please try another. Try again: ");
                 continue;
             }
 
             if(!checkCardAskedFor(playerHand, input)){
-                System.out.println("You cannot ask for a card you do not have. Try again: ");
+                console.println("You cannot ask for a card you do not have. Try again: ");
                 continue;
             }
 
-            System.out.println("You ask for a " + input.getValue());
+            console.println("You ask for a " + input.getValue());
             if(checkCards(aiHand, playerHand, input)){
                 playerPairs++;
                 playing = true;
@@ -117,7 +119,7 @@ public class GoFish {
             }
 
         } while(playing);
-        System.out.println("Go fish!");
+        console.println("Go fish!");
         fish(playerHand);
     }
 
@@ -126,10 +128,10 @@ public class GoFish {
         do{
             aiPairs += checkPairs(aiHand);
 
-            System.out.println("Your opponent has " + getAiPairs() + " pairs.");
+            console.println("Your opponent has " + getAiPairs() + " pairs.");
 
             if(aiHand.getNumCards() == 0){
-                System.out.println("Looks like your opponent's is empty, drawing five cards.");
+                console.println("Looks like your opponent's is empty, drawing five cards.");
                 for(int x = 0; x < 5; x++){
                     fish(aiHand);
                 }
@@ -137,7 +139,7 @@ public class GoFish {
 
             Card input = aiThoughts();
 
-            System.out.println("Your opponent asks for a " + input.getValue());
+            console.println("Your opponent asks for a " + input.getValue());
             if(checkCards(playerHand, aiHand, input)){
                 aiPairs++;
                 playing = true;
@@ -149,7 +151,7 @@ public class GoFish {
                 playing = false;
             }
         } while(playing);
-        System.out.println("Go fish!");
+        console.println("Go fish!");
         fish(aiHand);
     }
 
@@ -228,7 +230,7 @@ public class GoFish {
         if(deck.getNumCards() > 0){
             temp.drawCard(deck);
         } else {
-            System.out.println("Looks like the Deck is empty!");
+            console.println("Looks like the Deck is empty!");
         }
     }
 
@@ -236,13 +238,13 @@ public class GoFish {
         String winner = "";
         if(aiPairs < playerPairs){
             winner = "Player";
-            System.out.println("Congrats, you beat the AI!");
+            console.println("Congrats, you beat the AI!");
         } else if(aiPairs.equals(playerPairs)){
             winner = "Nobody";
-
+            console.println("Thats too bad, its a tie....");
         } else {
             winner = "AI";
-            System.out.println("Wow you couldn't beat the AI....");
+            console.println("Wow you couldn't beat the AI....");
         }
 
         return winner;
